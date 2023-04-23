@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LineGenerator : MonoBehaviour
 {
     public GameObject linePrefab;
     Line activeLine;
+
+    Ray ray;
+    RaycastHit hit;
 
     void Update()
     {

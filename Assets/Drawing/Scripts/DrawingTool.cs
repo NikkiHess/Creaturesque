@@ -38,7 +38,7 @@ public class DrawingTool : MonoBehaviour
             // Debug.Log("drawing at " + mousePos);
             if(activeLine != null) {
                 // z = -(Count + 1) to make line appear on top
-                mousePos = new Vector3(mousePos.x, mousePos.y, -(undoList.Count + 1));
+                mousePos = new Vector3(mousePos.x, mousePos.y, -(undoList.Count * 0.01f));
                 activeLine.updateLine(mousePos);
             }
         }

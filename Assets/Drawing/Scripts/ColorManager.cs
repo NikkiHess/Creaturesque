@@ -25,6 +25,7 @@ public class ColorManager : MonoBehaviour
 
     public void updatePicker() {
         fcp.startingColor = color;
+        fcp.color = color;
     }
 
     public void updateLine() {

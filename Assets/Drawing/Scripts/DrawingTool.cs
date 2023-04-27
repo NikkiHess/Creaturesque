@@ -9,9 +9,9 @@ public class DrawingTool : MonoBehaviour
     Line activeLine;
     #endregion
 
-    #region Undo
-    List<Line> undoList = new List<Line>();
-    List<Line> redoList = new List<Line>();
+    #region Undo/Redo
+    List<Line> undoList = new List<Line>(), 
+               redoList = new List<Line>();
     #endregion
 
     void Update()
@@ -37,8 +37,8 @@ public class DrawingTool : MonoBehaviour
 
             // Debug.Log("drawing at " + mousePos);
             if(activeLine != null) {
-                // z = -1 to make line appear on top
-                mousePos = new Vector3(mousePos.x, mousePos.y, -1);
+                // z = -(Count + 1) to make line appear on top
+                mousePos = new Vector3(mousePos.x, mousePos.y, -(undoList.Count + 1));
                 activeLine.updateLine(mousePos);
             }
         }

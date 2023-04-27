@@ -14,6 +14,10 @@ public class ColorManager : MonoBehaviour
         this.color = color;
     }
 
+    public void setColorFromImage(Image image) {
+        this.color = image.color;
+    }
+
     public void updateImage() {
         if(color != null)
             colorPickerButton.GetComponent<Image>().color = color;

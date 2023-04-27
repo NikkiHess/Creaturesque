@@ -1,12 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class LineGenerator : MonoBehaviour
+public class DrawingTool : MonoBehaviour
 {
     #region Draw
     public GameObject linePrefab, drawable;
+    public Color color = Color.black;
     Line activeLine;
     #endregion
 
@@ -25,6 +24,8 @@ public class LineGenerator : MonoBehaviour
             if(pointerInBounds) {
                 GameObject newLine = Instantiate(linePrefab);
                 activeLine = newLine.GetComponent<Line>();
+                // recolor the line accordingly
+                activeLine.lineRenderer.material.SetColor("_EmissionColor", color);
             }
         }
         #endregion
@@ -42,10 +43,18 @@ public class LineGenerator : MonoBehaviour
             }
         }
         #endregion
-        #region Left Click Release
-        if(Input.GetMouseButtonUp(0)) {
-            activeLine.complete = true;
-            undoList.Add(activeLine);
+        #region Left Click Released
+        if(Input.GetMouseButtonUp(0) && activeLine != null) {
+            // only lines that show up should be in lists
+            if(activeLine.GetComponent<LineRenderer>().positionCount <= 1)
+                GameObject.Destroy(activeLine.gameObject);
+            else {
+                // add to undoList and clear redoList (for consistency with other apps)
+                undoList.Add(activeLine);
+                clearRedoList();
+            }
+
+            // either way, stop drawing
             activeLine = null;
         }
         #endregion
@@ -57,11 +66,7 @@ public class LineGenerator : MonoBehaviour
         con = Input.GetKey(KeyCode.CTRL) && Input.GetKeyDown(KeyCode.Z);
         #endif
         if(undoList.Count > 0 && con) {
-            Line toRemove;
-            if(undoList[undoList.Count - 1].complete)
-                toRemove = undoList[undoList.Count - 1];
-            else
-                toRemove = undoList[undoList.Count - 2];
+            Line toRemove = undoList[undoList.Count - 1];
             
             // destroy and remove from list
             toRemove.gameObject.SetActive(false);
@@ -98,29 +103,33 @@ public class LineGenerator : MonoBehaviour
     /// Returns the drawable edge nearest the mouse pointer
     Vector2 forceWithinBounds(Vector2 mousePos) {
         Vector2 extents = drawable.GetComponent<Renderer>().bounds.extents;
-        Vector2 center = transform.position;
+        Vector2 center = drawable.transform.position;
         float lineOffset = (linePrefab.GetComponent<LineRenderer>().startWidth / 2);
 
         // two separate ifs instead of if/else chain because
         // corners are edge cases
 
         // mouse off right side
-        if(mousePos.x > extents.x + center.x - lineOffset) {
+        if(mousePos.x > extents.x + center.x - lineOffset)
             mousePos.x = extents.x + center.x - lineOffset;
-        }
         // mouse off top side
-        if(mousePos.y > extents.y + center.y - lineOffset) {
+        if(mousePos.y > extents.y + center.y - lineOffset)
             mousePos.y = extents.y + center.y - lineOffset;
-        }
         // mouse off left side
-        if(mousePos.x < -extents.x + center.x + lineOffset) {
+        if(mousePos.x < -extents.x + center.x + lineOffset)
             mousePos.x = -extents.x + center.x + lineOffset;
-        }
         // mouse off top side
-        if(mousePos.y < -extents.y + center.y + lineOffset) {
+        if(mousePos.y < -extents.y + center.y + lineOffset)
             mousePos.y = -extents.y + center.y + lineOffset;
-        }
 
         return mousePos;
     }
+
+    /// Destroy all lines in redo list, and clear it
+    void clearRedoList() {
+        foreach(Line line in redoList)
+            GameObject.Destroy(line.gameObject);
+        redoList.Clear();
+    }
+
 }

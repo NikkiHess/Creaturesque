@@ -10,7 +10,6 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public float threshold;
     List<Vector2> points;
-    public bool complete = false;
 
     /// Create a new list of points if necessary, then add a point
     public void updateLine(Vector3 position) {

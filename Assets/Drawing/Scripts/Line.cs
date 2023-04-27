@@ -10,8 +10,10 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public float threshold;
     List<Vector2> points;
+    public bool complete = false;
 
-    public void updateLine(Vector2 position) {
+    /// Create a new list of points if necessary, then add a point
+    public void updateLine(Vector3 position) {
         if(points == null) {
             points = new List<Vector2>();
             addPoint(position);
@@ -22,7 +24,8 @@ public class Line : MonoBehaviour
         }
     }
 
-    void addPoint(Vector2 point) {
+    /// Add a new point to the line
+    void addPoint(Vector3 point) {
         // add to list
         points.Add(point);
 

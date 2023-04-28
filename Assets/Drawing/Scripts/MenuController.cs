@@ -16,7 +16,6 @@ public class MenuController : MonoBehaviour
         if(menu.GetComponent<FlexibleColorPicker>() != null) {
             Color color = GetComponent<Image>().color;
             // Update FlexibleColorPicker start color
-            eventSystem.GetComponent<ColorManager>().setColor(color);
             eventSystem.GetComponent<ColorManager>().updatePicker();
         }
     }

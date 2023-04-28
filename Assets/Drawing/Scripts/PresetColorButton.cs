@@ -8,7 +8,7 @@ public class PresetColorButton : MonoBehaviour
     public void onPressed() {
         ColorManager cm = GameObject.FindGameObjectsWithTag("EventSystem")[0].GetComponent<ColorManager>();
         cm.setColorFromImage(GetComponent<Image>());
-        cm.updateImage();
+        cm.updateLinePreview();
         cm.updateLine();
         cm.updatePicker();
     }

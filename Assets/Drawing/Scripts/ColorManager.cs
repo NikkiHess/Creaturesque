@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ColorManager : MonoBehaviour
 {
     public Color color;
-    public GameObject colorPickerButton;
+    public GameObject linePreview;
     public DrawingTool drawingTool;
     public FlexibleColorPicker fcp;
 
@@ -18,15 +18,15 @@ public class ColorManager : MonoBehaviour
         this.color = image.color;
     }
 
-    public void updateImage() {
+    public void updateLinePreview() {
         if(color != null)
-            // colorPickerButton.GetComponent<Image>().color = color;
-            colorPickerButton.GetComponent<LineRenderer>().material.SetColor("_EmissionColor", color);
+            linePreview.GetComponent<LineRenderer>().material.SetColor("_EmissionColor", color);
     }
 
     public void updatePicker() {
         fcp.startingColor = color;
         fcp.color = color;
+        // Debug.Log("Update Picker: " + color);
     }
 
     public void updateLine() {

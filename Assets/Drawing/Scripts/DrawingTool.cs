@@ -6,6 +6,7 @@ public class DrawingTool : MonoBehaviour
     #region Draw
     public GameObject linePrefab, drawable;
     public Color color = Color.black;
+    public float size = 0.08f;
     Line activeLine;
     #endregion
 
@@ -26,6 +27,8 @@ public class DrawingTool : MonoBehaviour
                 activeLine = newLine.GetComponent<Line>();
                 // recolor the line accordingly
                 activeLine.lineRenderer.material.SetColor("_EmissionColor", color);
+                // resize the line accordingly
+                activeLine.lineRenderer.startWidth = size;
             }
         }
         #endregion

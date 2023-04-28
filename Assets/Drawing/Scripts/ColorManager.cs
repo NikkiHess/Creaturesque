@@ -20,7 +20,8 @@ public class ColorManager : MonoBehaviour
 
     public void updateImage() {
         if(color != null)
-            colorPickerButton.GetComponent<Image>().color = color;
+            // colorPickerButton.GetComponent<Image>().color = color;
+            colorPickerButton.GetComponent<LineRenderer>().material.SetColor("_EmissionColor", color);
     }
 
     public void updatePicker() {

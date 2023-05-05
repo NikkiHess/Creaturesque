@@ -18,7 +18,6 @@ public class DrawingTool : MonoBehaviour
     void Update()
     {
         bool pointerInBounds = isPointerInBounds();
-        // Debug.Log("pointerInBounds: " + pointerInBounds);
 
         #region Left Click Down
         if(Input.GetMouseButtonDown(0)) {
@@ -35,11 +34,9 @@ public class DrawingTool : MonoBehaviour
         #region Left Click Held
         if(Input.GetMouseButton(0)) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // force line inside drawable if necessary
-            mousePos = forceWithinBounds(mousePos);
-
-            // Debug.Log("drawing at " + mousePos);
             if(activeLine != null) {
+                // force line inside drawable if necessary
+                mousePos = forceWithinBounds(mousePos);
                 // z = -(Count + 1) to make line appear on top
                 mousePos = new Vector3(mousePos.x, mousePos.y, -(undoList.Count * 0.01f));
                 activeLine.updateLine(mousePos);
@@ -62,13 +59,13 @@ public class DrawingTool : MonoBehaviour
         }
         #endregion
         #region Undo (Ctrl+Z OR Z in Editor)
-        bool con;
+        bool undoControl;
         #if UNITY_EDITOR
-        con = Input.GetKeyDown(KeyCode.Z);
+        undoControl = Input.GetKeyDown(KeyCode.Z);
         #else
-        con = Input.GetKey(KeyCode.CTRL) && Input.GetKeyDown(KeyCode.Z);
+        undoControl = Input.GetKey(KeyCode.CTRL) && Input.GetKeyDown(KeyCode.Z);
         #endif
-        if(undoList.Count > 0 && con) {
+        if(undoList.Count > 0 && undoControl) {
             Line toRemove = undoList[undoList.Count - 1];
             
             // destroy and remove from list
@@ -78,12 +75,13 @@ public class DrawingTool : MonoBehaviour
         }
         #endregion
         #region Redo (Ctrl+Y OR Y in Editor)
+        bool redoControl;
         #if UNITY_EDITOR
-        con = Input.GetKeyDown(KeyCode.Y);
+        redoControl = Input.GetKeyDown(KeyCode.Y);
         #else
-        con = Input.GetKey(KeyCode.CTRL) && Input.GetKeyDown(KeyCode.Y);
+        redoControl = Input.GetKey(KeyCode.CTRL) && Input.GetKeyDown(KeyCode.Y);
         #endif
-        if(redoList.Count > 0 && con) {
+        if(redoList.Count > 0 && redoControl) {
             Line toAdd = redoList[redoList.Count - 1];
             
             // destroy and remove from list
@@ -107,23 +105,27 @@ public class DrawingTool : MonoBehaviour
     Vector2 forceWithinBounds(Vector2 mousePos) {
         Vector2 extents = drawable.GetComponent<Renderer>().bounds.extents;
         Vector2 center = drawable.transform.position;
-        float lineOffset = (linePrefab.GetComponent<LineRenderer>().startWidth / 2);
-
+        float lineOffset = (activeLine.gameObject.GetComponent<LineRenderer>().startWidth / 2);
+        
         // two separate ifs instead of if/else chain because
         // corners are edge cases
 
         // mouse off right side
-        if(mousePos.x > extents.x + center.x - lineOffset)
+        if(mousePos.x > extents.x + center.x - lineOffset) {
             mousePos.x = extents.x + center.x - lineOffset;
+        }
         // mouse off top side
-        if(mousePos.y > extents.y + center.y - lineOffset)
+        if(mousePos.y > extents.y + center.y - lineOffset) {
             mousePos.y = extents.y + center.y - lineOffset;
+        }
         // mouse off left side
-        if(mousePos.x < -extents.x + center.x + lineOffset)
+        if(mousePos.x < -extents.x + center.x + lineOffset) {
             mousePos.x = -extents.x + center.x + lineOffset;
-        // mouse off top side
-        if(mousePos.y < -extents.y + center.y + lineOffset)
+        }
+        // mouse off bottom side
+        if(mousePos.y < -extents.y + center.y + lineOffset) {
             mousePos.y = -extents.y + center.y + lineOffset;
+        }
 
         return mousePos;
     }

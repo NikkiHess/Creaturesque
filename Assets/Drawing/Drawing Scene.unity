@@ -2603,19 +2603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31629c56f6f83234a90f6296f902f9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1275323182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275323176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
 --- !u!224 &1326954932 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6015035355305071343, guid: 771af0f49425e0248b47fd338d7ccca1, type: 3}
@@ -2909,7 +2896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2130943084915617138, guid: 4214b57e615806c448ba9d993d629531, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2130943084915617142, guid: 4214b57e615806c448ba9d993d629531, type: 3}
       propertyPath: m_CullTransparentMesh
@@ -3214,10 +3201,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2130943084915617138, guid: 4214b57e615806c448ba9d993d629531, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1275323182}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4214b57e615806c448ba9d993d629531, type: 3}
 --- !u!1001 &1417280955
 PrefabInstance:
@@ -3709,17 +3693,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'TODO:
 
-    - Fix line blunt ends
-
-    - Fix edge correction for bigger
-    lines
-
     - Add eyedropper
 
     - Add tools (bucket, shapes, etc)
 
-    - Game
-    part
+    -
+    Game part
 
     - Visuals
 

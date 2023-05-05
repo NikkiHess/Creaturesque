@@ -4,7 +4,7 @@ using UnityEngine;
 public class DrawingTool : MonoBehaviour
 {
     #region Draw
-    public GameObject linePrefab, drawable;
+    public GameObject linePrefab, drawable, lineGroup;
     public Color color = Color.black;
     public float size = 0.08f;
     Line activeLine;
@@ -23,6 +23,7 @@ public class DrawingTool : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) {
             if(pointerInBounds) {
                 GameObject newLine = Instantiate(linePrefab);
+                newLine.transform.parent = lineGroup.transform;
                 activeLine = newLine.GetComponent<Line>();
                 // recolor the line accordingly
                 activeLine.lineRenderer.material.SetColor("_EmissionColor", color);

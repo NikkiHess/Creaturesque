@@ -1546,6 +1546,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1973332200}
+        m_TargetAssemblyTypeName: ColorManager, Assembly-CSharp
+        m_MethodName: updatePickerButtonBG
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &698490793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1996,7 +2008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -257.59995, y: 20}
+  m_AnchoredPosition: {x: -257.6, y: 20}
   m_SizeDelta: {x: -660.7999, y: -76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1104844560
@@ -3712,15 +3724,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'TODO:
 
-    - Make color picker bg change to black when selecting white
-    line
-
     - Fix line blunt ends
 
-    - Fix edge correction for bigger lines
+    - Fix edge correction for bigger
+    lines
 
-    -
-    Add eyedropper
+    - Add eyedropper
 
     - Add tools (bucket, shapes, etc)
 
@@ -4037,6 +4046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
   linePreview: {fileID: 645938673}
+  colorPickerButton: {fileID: 698490790}
   drawingTool: {fileID: 1104844562}
   fcp: {fileID: 1275323178}
 --- !u!114 &1973332201

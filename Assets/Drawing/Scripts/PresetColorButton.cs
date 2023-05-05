@@ -11,5 +11,6 @@ public class PresetColorButton : MonoBehaviour
         cm.updateLinePreview();
         cm.updateLine();
         cm.updatePicker();
+        cm.updatePickerButtonBG();
     }
 }

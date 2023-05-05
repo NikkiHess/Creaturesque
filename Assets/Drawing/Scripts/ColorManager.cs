@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ColorManager : MonoBehaviour
 {
     public Color color;
-    public GameObject linePreview;
+    public GameObject linePreview, colorPickerButton;
     public DrawingTool drawingTool;
     public FlexibleColorPicker fcp;
 
@@ -31,6 +31,11 @@ public class ColorManager : MonoBehaviour
 
     public void updateLine() {
         drawingTool.color = color;
+    }
+
+    public void updatePickerButtonBG() {
+        Color bg = (color == Color.white ? Color.black : Color.white);
+        colorPickerButton.GetComponent<Image>().color = bg;
     }
 
 }

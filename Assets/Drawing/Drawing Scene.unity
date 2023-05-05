@@ -1072,7 +1072,6 @@ GameObject:
   m_Component:
   - component: {fileID: 645938676}
   - component: {fileID: 645938675}
-  - component: {fileID: 645938674}
   m_Layer: 0
   m_Name: Line Preview
   m_TagString: Untagged
@@ -1080,20 +1079,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &645938674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645938673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cefb5c2539e4a3e45a4a7a736e6e5e31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 645938675}
-  threshold: 0.01
 --- !u!120 &645938675
 LineRenderer:
   serializedVersion: 2
@@ -1282,7 +1267,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 20
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -3733,7 +3718,14 @@ MonoBehaviour:
 
     - Add tools (bucket, shapes, etc)
 
-    - Visuals'
+    - Game
+    part
+
+    - Visuals
+
+    - Fix color picker rendering below lines
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

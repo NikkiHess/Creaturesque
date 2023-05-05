@@ -125,7 +125,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 20
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -148,4 +148,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 2215940737374747922}
-  threshold: 0.01
+  threshold: 0.005
